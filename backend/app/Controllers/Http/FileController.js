@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const File = use('App/Models/File');
-const Helpers = use('Helpers');
+const File = use("App/Models/File");
+const Helpers = use("Helpers");
 
 /**
  * Resourceful controller for interacting with files
@@ -15,13 +15,13 @@ class FileController {
 
   async store({ request, response }) {
     try {
-      if (!request.file('file')) return;
+      if (!request.file("file")) return;
 
-      const upload = request.file('file', { size: '2mb' });
+      const upload = request.file("file", { size: "2mb" });
 
       const fileName = `${Date.now()}.${upload.subtype}`;
 
-      await upload.move(Helpers.tmpPath('uploads'), {
+      await upload.move(Helpers.tmpPath("uploads"), {
         name: fileName,
       });
 
@@ -40,7 +40,7 @@ class FileController {
     } catch (err) {
       return response
         .status(err.status)
-        .send({ error: { message: 'Houve um erro ao importar o arquivo' } });
+        .send({ error: { message: "Houve um erro ao importar o arquivo" } });
     }
   }
 }
